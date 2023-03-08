@@ -47,14 +47,16 @@ USER 1001
 ENV NODE_ENV production
 
 # Copy & install dependencies prepared by the build stage
-COPY --from=build /opt/app-root/src/yarn.lock \
-                  /opt/app-root/src/package.json \
-                  /opt/app-root/src/packages/backend/dist/skeleton/ ./
+COPY --from=build --chown=1001:0 \
+    /opt/app-root/src/yarn.lock \
+    /opt/app-root/src/package.json \
+    /opt/app-root/src/packages/backend/dist/skeleton/ ./
 RUN --mount=type=cache,from=build,target=/opt/app-root/src/.cache/yarn,uid=10001,gid=0 \
     yarn install --frozen-lockfile --production --network-timeout 600000
 
 # Copy the built packages from the build stage
-COPY --from=build /opt/app-root/src/packages/backend/dist/bundle/ ./
+COPY --from=build --chown=1001:0 \
+    /opt/app-root/src/packages/backend/dist/bundle/ ./
 
 # Copy any other files that we need at runtime
 COPY --chown=1001:0 app-config.yaml ./
