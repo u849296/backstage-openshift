@@ -14,7 +14,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-18-minimal AS build
 # Install yarn, SQLite and build tools. You can skip SQLite & build tools when not needed
 USER 0
 RUN npm install -g yarn
-RUN microdnf install -y sqlite sqlite-devel && microdnf clean all
+# RUN microdnf install -y sqlite sqlite-devel && microdnf clean all
 RUN microdnf install -y python3 make gcc-c++ gzip && microdnf clean all
 USER 1001
 
@@ -41,7 +41,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-18-minimal
 # Install yarn, SQLite and build tools. You can skip SQLite when not needed
 USER 0
 RUN npm install -g yarn
-RUN microdnf install -y sqlite sqlite-devel && microdnf clean all
+# RUN microdnf install -y sqlite sqlite-devel && microdnf clean all
 USER 1001
 
 ENV NODE_ENV production
