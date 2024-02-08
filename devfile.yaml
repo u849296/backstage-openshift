@@ -49,7 +49,7 @@ components:
     mountSources: true
   name: runtime
 metadata:
-  description: Node.js 16 application
+  description: Node.js 18 application
   displayName: Node.js Runtime
   icon: https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg
   language: JavaScript

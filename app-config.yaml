@@ -3,7 +3,7 @@ app:
   baseUrl: https://${HOST}
 
 organization:
-  name: My Company
+  name: Foot Locker
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
