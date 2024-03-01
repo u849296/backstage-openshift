@@ -13,7 +13,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-18-minimal AS build
 
 # Install yarn, SQLite and build tools. You can skip SQLite & build tools when not needed
 USER 0
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+RUN touch ~/.profile && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 RUN export NODE_OPTIONS="--max-old-space-size=2048" && nvm use $VERSION_NODE_12 && npm install -g yarn
 # RUN microdnf install -y sqlite sqlite-devel && microdnf clean all
 RUN microdnf install -y python3 make gcc-c++ gzip && microdnf clean all
